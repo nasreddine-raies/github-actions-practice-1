@@ -1,15 +1,18 @@
-name: Event Filters
+name: Selective Branch and Path Filtering
+
 on:
   push:
     branches:
-      - main
-      - 'release/**'
+      - dev
+      - release/*
     paths-ignore:
       - 'docs/**'
-
 
 jobs:
   test-filters:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Event filters working! Triggered on ${{ github.ref_name }} branch"
+      - name: Show trigger event
+        run: |
+          echo "Workflow triggered by ${{ github.event_name }}"
+          echo "Branch: ${{ github.ref }}"
